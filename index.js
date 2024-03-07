@@ -6,7 +6,7 @@ const { cookie_keys } = require('./src/config/auth.config')
 const cookieSession = require('cookie-session')
 
 const PORT = 9090;
-const HOST = process.env.HOST302loc || "localhost";
+const HOST = process.env.HOST202loc || "localhost";
 
 
 const app = express()
