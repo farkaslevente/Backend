@@ -91,6 +91,13 @@ router.post("/", function (req, res) {
     res.json(dbFunctions.acceptToken(req, res))
 })
 
+router.post("/ads", async function(req, res) {
+    try {
+        res.json(await dbFunctions.postAds(req.body));
+    } catch (err) {
+        console.error("Error posting!", err.message);
+    }
+});
 
 module.exports = {
     router
