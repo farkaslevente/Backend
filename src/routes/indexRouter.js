@@ -20,6 +20,14 @@ router.get("/pictures", async function(_req, res, next) {
         next(err);
     }
 });
+router.get("/ads", async function(_req, res, next) {
+    try {
+        res.json(await dbFunctions.getAds());
+    } catch (err) {
+        console.error("Error while getting advertisements!", err.message);
+        next(err);
+    }
+});
 
 router.get("/users", async function(_req, res, next) {
     try {

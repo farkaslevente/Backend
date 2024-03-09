@@ -15,6 +15,13 @@ const dbFunctions = {
         SELECT * FROM kepek`)
         return res
     },
+    getAds: async function (res) {
+        res = await query(
+        `SELECT *
+        FROM termekek`
+        );
+        return res;
+    },
 
     postUsers: async function (req) {
         console.log(req);
@@ -25,18 +32,7 @@ const dbFunctions = {
         } catch (err) {
             console.error("Error posting!", err.message);
         }
-    },
-    postAds: async function (req) {
-        console.log(req);
-        const insertValues = [req.id, req.nev, req.leiras, req.kategoria, req.alkategoria, req.ar, req.varmegyeId, req.telepules, req.tulajId, req.datum]
-        try {
-            await query(`INSERT INTO termekek (id, nev, leiras, kategoria, alkategoria, ar, varmegyeId, telepules, tulajId, datum)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, insertValues);
-        } catch (err) {
-            console.error("Error posting!", err.message);
-        }
-    },
-
+    },    
     putUsers: async function (req, res) {
         console.log(req) + "\n";
         try {
@@ -51,6 +47,18 @@ const dbFunctions = {
             console.error("Error posting!", err.message);
         }
     },
+
+    postAds: async function (req) {
+        console.log(req);
+        const insertValues = [req.id, req.nev, req.leiras, req.kategoria, req.alkategoria, req.ar, req.varmegyeId, req.telepules, req.tulajId, req.datum]
+        try {
+            await query(`INSERT INTO termekek (id, nev, leiras, kategoria, alkategoria, ar, varmegyeId, telepules, tulajId, datum)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, insertValues);
+        } catch (err) {
+            console.error("Error posting!", err.message);
+        }
+    },
+
 
     deleteUsers: async function (req, res) {
         console.log(req)
@@ -115,7 +123,8 @@ const dbFunctions = {
             console.error("Error getting!", err.message);
             res.status(500).json({error: "Internal server error!"})
         }
-    }
+    }    
+
 }
 module.exports = {
     dbFunctions
